@@ -40,3 +40,17 @@ ZEABUR_TOKEN=... MCP_ACCESS_TOKEN=... npm start
 ```
 
 This is a starter gateway, not an official Zeabur-hosted MCP server.
+
+## Docker image (GHCR)
+
+A GitHub Actions workflow at `.github/workflows/publish-image.yml` builds and publishes the container image to GitHub Container Registry on pushes to `main`, version tags, and manual workflow dispatch.
+
+Expected image name:
+
+```text
+ghcr.io/liseezn/zeabur-remote-mcp:latest
+```
+
+The first image appears only after the GitHub Actions workflow completes successfully. If the package is private, change its visibility to public in GitHub Packages before pulling it from a deployment platform that does not have registry credentials configured.
+
+In Zeabur, choose deployment from a Docker image and enter the image name above. Set `ZEABUR_TOKEN` and `MCP_ACCESS_TOKEN` as service variables; never bake them into the image.
